@@ -18,8 +18,21 @@ class Merchant extends Model
     protected $fillable = [
         'name',
         'slug',
+        'keywords',
         'category_id',
     ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'keywords' => 'array',
+        ];
+    }
 
     /**
      * Get the category that owns the merchant.

@@ -13,15 +13,15 @@ class AccountTypeSeeder extends Seeder
     public function run(): void
     {
         $types = [
-            ['code' => 'checking', 'name' => 'Cuenta Corriente'],
-            ['code' => 'savings', 'name' => 'Cuenta de Ahorro'],
-            ['code' => 'vista', 'name' => 'Cuenta Vista'],
-            ['code' => 'credit_card', 'name' => 'Tarjeta de Crédito'],
+            ['code' => 'checking',       'name' => 'Cuenta Corriente'],
+            ['code' => 'savings',        'name' => 'Cuenta de Ahorro'],
+            ['code' => 'vista',          'name' => 'Cuenta Vista'],
+            ['code' => 'credit_card',    'name' => 'Tarjeta de Crédito'],
             ['code' => 'line_of_credit', 'name' => 'Línea de Crédito'],
-            ['code' => 'prepaid', 'name' => 'Tarjeta Prepago'],
-            ['code' => 'investment', 'name' => 'Cuenta de Inversión'],
+            ['code' => 'prepaid',        'name' => 'Tarjeta Prepago'],
+            ['code' => 'investment',     'name' => 'Cuenta de Inversión'],
             ['code' => 'virtual_wallet', 'name' => 'Billetera Digital'],
-            ['code' => 'cash', 'name' => 'EfZectivo'],
+            ['code' => 'cash',           'name' => 'Efectivo'],
         ];
 
         foreach ($types as $type) {

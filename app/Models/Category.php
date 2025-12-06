@@ -19,8 +19,8 @@ class Category extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'code',
         'name',
+        'slug',
         'parent_id',
     ];
 
@@ -38,5 +38,13 @@ class Category extends Model
     public function children(): HasMany
     {
         return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    /**
+     * Get the merchants for the category.
+     */
+    public function merchants(): HasMany
+    {
+        return $this->hasMany(Merchant::class);
     }
 }

@@ -5,9 +5,11 @@ namespace App\Models;
 use App\Enums\AccountState;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Account extends Model
 {
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
@@ -18,8 +19,8 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'code' => fake()->unique()->slug(),
-            'name' => fake()->unique()->word(),
+            'name' => $name = fake()->unique()->numerify('Category ###'),
+            'slug' => Str::slug($name),
             'parent_id' => Category::factory(),
         ];
     }
@@ -29,7 +30,7 @@ class CategoryFactory extends Factory
      */
     public function withoutParent(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'parent_id' => null,
         ]);
     }

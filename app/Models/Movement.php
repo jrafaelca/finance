@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use App\Enums\MovementType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Merchant extends Model
+class Movement extends Model
 {
     use SoftDeletes;
 
@@ -17,10 +17,13 @@ class Merchant extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'slug',
-        'keywords',
+        'type',
+        'description',
+        'amount',
+        'installment_month',
+        'account_id',
         'category_id',
+        'merchant_id',
     ];
 
     /**
@@ -31,12 +34,20 @@ class Merchant extends Model
     protected function casts(): array
     {
         return [
-            'keywords' => 'array',
+            'type' => MovementType::class,
         ];
     }
 
     /**
-     * Get the category that owns the merchant.
+     * Get the account that owns the movement.
+     */
+    public function account(): BelongsTo
+    {
+        return $this->belongsTo(Account::class);
+    }
+
+    /**
+     * Get the category that owns the movement.
      */
     public function category(): BelongsTo
     {
@@ -44,10 +55,10 @@ class Merchant extends Model
     }
 
     /**
-     * Get the movements for the merchant.
+     * Get the merchant that owns the movement.
      */
-    public function movements(): HasMany
+    public function merchant(): BelongsTo
     {
-        return $this->hasMany(Movement::class);
+        return $this->belongsTo(Merchant::class);
     }
 }

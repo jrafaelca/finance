@@ -15,8 +15,8 @@ class AccountType extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'code',
         'name',
+        'slug',
     ];
 
     /**

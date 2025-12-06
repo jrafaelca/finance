@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\AccountType;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class AccountTypeSeeder extends Seeder
 {
@@ -13,20 +14,20 @@ class AccountTypeSeeder extends Seeder
     public function run(): void
     {
         $types = [
-            ['code' => 'checking',       'name' => 'Cuenta Corriente'],
-            ['code' => 'savings',        'name' => 'Cuenta de Ahorro'],
-            ['code' => 'vista',          'name' => 'Cuenta Vista'],
-            ['code' => 'credit_card',    'name' => 'Tarjeta de Crédito'],
-            ['code' => 'line_of_credit', 'name' => 'Línea de Crédito'],
-            ['code' => 'prepaid',        'name' => 'Tarjeta Prepago'],
-            ['code' => 'investment',     'name' => 'Cuenta de Inversión'],
-            ['code' => 'virtual_wallet', 'name' => 'Billetera Digital'],
-            ['code' => 'cash',           'name' => 'Efectivo'],
+            ['name' => 'Cuenta Corriente'],
+            ['name' => 'Cuenta de Ahorro'],
+            ['name' => 'Cuenta Vista'],
+            ['name' => 'Tarjeta de Crédito'],
+            ['name' => 'Línea de Crédito'],
+            ['name' => 'Tarjeta Prepago'],
+            ['name' => 'Cuenta de Inversión'],
+            ['name' => 'Billetera Digital'],
+            ['name' => 'Efectivo'],
         ];
 
         foreach ($types as $type) {
             AccountType::query()->updateOrCreate(
-                ['code' => $type['code']],
+                ['slug' => Str::slug($type['name'])],
                 ['name' => $type['name']]
             );
         }

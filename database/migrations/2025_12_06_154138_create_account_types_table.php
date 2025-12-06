@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('account_types', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
             $table->string('name');
+            $table->string('slug')->unique();
             $table->timestamps();
             $table->softDeletes();
         });

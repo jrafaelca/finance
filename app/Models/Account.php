@@ -5,11 +5,13 @@ namespace App\Models;
 use App\Enums\AccountState;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Account extends Model
 {
     use SoftDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -60,5 +62,13 @@ class Account extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the movements for the account.
+     */
+    public function movements(): HasMany
+    {
+        return $this->hasMany(Movement::class);
     }
 }

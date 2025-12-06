@@ -47,4 +47,12 @@ class Category extends Model
     {
         return $this->hasMany(Merchant::class);
     }
+
+    /**
+     * Get the movements for the category.
+     */
+    public function movements(): HasMany
+    {
+        return $this->hasMany(Movement::class);
+    }
 }

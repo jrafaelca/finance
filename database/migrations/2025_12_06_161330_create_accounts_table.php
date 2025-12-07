@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('masked_number')->nullable();
             $table->decimal('credit_limit', 12, 2)->nullable();
             $table->decimal('interest_rate', 5, 2)->nullable();
+            $table->decimal('current_balance', 14, 2)->default(0);
             $table->foreignId('account_type_id')->constrained();
             $table->foreignId('bank_id')->constrained()->restrictOnDelete();
             $table->foreignId('user_id')->constrained()->restrictOnDelete();

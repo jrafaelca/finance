@@ -40,6 +40,7 @@ class Account extends Model
             'masked_number' => 'string',
             'credit_limit' => 'decimal:2',
             'interest_rate' => 'decimal:2',
+            'current_balance' => 'decimal:2',
         ];
     }
 

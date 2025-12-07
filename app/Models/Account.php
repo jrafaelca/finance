@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\AccountState;
+use App\Enums\AccountStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -36,7 +36,10 @@ class Account extends Model
     protected function casts(): array
     {
         return [
-            'status' => AccountState::class,
+            'status' => AccountStatus::class,
+            'masked_number' => 'string',
+            'credit_limit' => 'decimal:2',
+            'interest_rate' => 'decimal:2',
         ];
     }
 
@@ -70,5 +73,13 @@ class Account extends Model
     public function movements(): HasMany
     {
         return $this->hasMany(Movement::class);
+    }
+
+    /**
+     * Get the installments for the account.
+     */
+    public function installments(): HasMany
+    {
+        return $this->hasMany(Installment::class);
     }
 }

@@ -20,6 +20,18 @@ class AccountType extends Model
     ];
 
     /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'slug' => 'string',
+        ];
+    }
+
+    /**
      * Get the accounts for the account type.
      */
     public function accounts(): HasMany

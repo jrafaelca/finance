@@ -25,6 +25,19 @@ class Category extends Model
     ];
 
     /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'name' => 'string',
+            'slug' => 'string',
+            'parent_id' => 'integer',       ];
+    }
+
+    /**
      * Get the parent that owns the category.
      */
     public function parent(): BelongsTo

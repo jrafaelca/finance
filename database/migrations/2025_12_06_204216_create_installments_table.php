@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accounts', function (Blueprint $table) {
+        Schema::create('installments', function (Blueprint $table) {
             $table->id();
             $table->string('status');
-            $table->string('display_name');
-            $table->string('masked_number')->nullable();
-            $table->decimal('credit_limit', 12, 2)->nullable();
+            $table->string('interest_type')->nullable();
             $table->decimal('interest_rate', 5, 2)->nullable();
-            $table->foreignId('account_type_id')->constrained();
-            $table->foreignId('bank_id')->constrained()->restrictOnDelete();
-            $table->foreignId('user_id')->constrained()->restrictOnDelete();
+            $table->decimal('original_amount', 14, 2);
+            $table->decimal('total_amount', 14, 2);
+            $table->unsignedInteger('installments_total');
+            $table->foreignId('account_id')->constrained()->restrictOnDelete();
+            $table->foreignId('movement_id')->constrained()->restrictOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('installments');
     }
 };

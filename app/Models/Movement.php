@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\Enums\MovementType;
+use App\Enums\MovementTypes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Movement extends Model
@@ -18,9 +19,11 @@ class Movement extends Model
      */
     protected $fillable = [
         'type',
+        'date',
         'description',
         'amount',
-        'installment_month',
+        'installment_number',
+        'installment_id',
         'account_id',
         'category_id',
         'merchant_id',
@@ -34,7 +37,14 @@ class Movement extends Model
     protected function casts(): array
     {
         return [
-            'type' => MovementType::class,
+            'type' => MovementTypes::class,
+            'date' => 'date',
+            'amount' => 'decimal:2',
+            'installment_number' => 'integer',
+            'account_id'     => 'integer',
+            'category_id'    => 'integer',
+            'merchant_id'    => 'integer',
+            'installment_id' => 'integer',
         ];
     }
 
@@ -60,5 +70,21 @@ class Movement extends Model
     public function merchant(): BelongsTo
     {
         return $this->belongsTo(Merchant::class);
+    }
+
+    /**
+     * Get the installment that owns the movement.
+     */
+    public function installment(): BelongsTo
+    {
+        return $this->belongsTo(Installment::class);
+    }
+
+    /**
+     * Get the installment plan associated with the movement.
+     */
+    public function installmentPlan(): HasOne
+    {
+        return $this->hasOne(Installment::class, 'movement_id');
     }
 }

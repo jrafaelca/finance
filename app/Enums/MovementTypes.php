@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum MovementType: string
+enum MovementTypes: string
 {
     case PURCHASE = 'purchase';
     case EXPENSE = 'expense';

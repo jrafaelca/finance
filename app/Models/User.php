@@ -55,4 +55,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Account::class);
     }
+
+    /**
+     * Get the movements for the user.
+     */
+    public function movements(): HasMany
+    {
+        return $this->hasManyThrough(Movement::class, Account::class);
+    }
 }

@@ -21,6 +21,18 @@ class Bank extends Model
     ];
 
     /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'code' => 'string',
+            'name' => 'string',        ];
+    }
+
+    /**
      * Get the accounts for the bank.
      */
     public function accounts(): HasMany

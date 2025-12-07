@@ -31,6 +31,8 @@ class Merchant extends Model
     protected function casts(): array
     {
         return [
+            'name' => 'string',
+            'slug' => 'string',
             'keywords' => 'array',
         ];
     }
